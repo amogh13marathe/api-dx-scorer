@@ -1,3 +1,15 @@
+---
+title: API DX Scorecard
+emoji: 🔌
+colorFrom: blue
+colorTo: purple
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # API DX Scorecard
 
 **A PM tool that grades API documentation against the bar developers actually expect.**
