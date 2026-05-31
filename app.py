@@ -89,11 +89,14 @@ def score_documentation(source_label: str, content: str) -> dict:
             "(Settings → Variables and secrets). Get a free key at https://console.groq.com."
         )
     content = _truncate(content)
-    messages = [
-        {"role": "system", "content": build_system_prompt()},
-        {"role": "user", "content": build_user_prompt(source_label, content)},
-    ]
     for model in (MODEL_PRIMARY, MODEL_FALLBACK):
+        # 8B model has a tight TPM cap — truncate harder
+        max_chars = MAX_DOC_CHARS if model == MODEL_PRIMARY else 8_000
+        truncated = _truncate(content, max_chars)
+        messages = [
+            {"role": "system", "content": build_system_prompt()},
+            {"role": "user", "content": build_user_prompt(source_label, truncated)},
+        ]
         try:
             completion = _client.chat.completions.create(
                 model=model,
@@ -106,7 +109,6 @@ def score_documentation(source_label: str, content: str) -> dict:
         except Exception as e:
             err = str(e)
             if "rate_limit_exceeded" in err and model == MODEL_PRIMARY:
-                # Primary exhausted — try fallback silently
                 continue
             raise
     raise RuntimeError(
@@ -471,11 +473,12 @@ def run_single(input_type, url, pasted):
         if "rate_limit_exceeded" in err:
             import re as _re
             wait = _re.search(r'Please try again in ([^.\'\"]+)', err)
-            wait_str = wait.group(1).strip() if wait else None
-            if wait_str:
-                yield f"⏳ Token limit reached. Try again in **{wait_str}**.", "", "", ""
+            if wait:
+                yield f"⏳ Token limit reached. Try again in {wait.group(1).strip()}.", "", "", ""
+            elif "Request too large" in err:
+                yield "⚠️ This page is too large even for the fallback model. Try pasting a shorter excerpt using 'Paste docs' mode.", "", "", ""
             else:
-                yield f"⏳ Token limit reached. Error details: {err}", "", "", ""
+                yield f"⏳ Token limit reached. Error: {err}", "", "", ""
         else:
             yield f"Unexpected error: {type(e).__name__}: {e}", "", "", ""
 
