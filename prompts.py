@@ -148,11 +148,11 @@ Return ONLY valid JSON, no prose before or after, matching this exact schema:
   }},
   "top_strengths": ["...", "...", "..."],
   "top_improvements": [
-    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "..."}},
-    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "..."}},
-    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "..."}},
-    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "..."}},
-    {{"priority": "P2", "area": "...", "change": "...", "why_it_matters": "..."}}
+    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "before": "Short example of the current state (quote from docs or description of what's missing)", "after": "Short example of what it should look like after the fix"}},
+    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}},
+    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}},
+    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}},
+    {{"priority": "P2", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}}
   ]
 }}
 

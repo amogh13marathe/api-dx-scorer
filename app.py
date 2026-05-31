@@ -58,6 +58,14 @@ def fetch_url(url: str) -> str:
     main = soup.find("main") or soup.find("article") or soup.body or soup
     text = main.get_text("\n", strip=True)
     text = re.sub(r"\n{3,}", "\n\n", text)
+
+    # Detect JS-rendered shells (< 400 chars of real content after stripping)
+    if len(text.strip()) < 400:
+        raise ValueError(
+            "This page appears to be JavaScript-rendered (the HTML shell returned almost no text). "
+            "Try pasting the documentation text directly using the 'Paste docs' input type instead."
+        )
+
     return text
 
 
@@ -165,26 +173,52 @@ def render_scorecard_html(source: str, result: dict) -> str:
           </td>
         </tr>"""
 
-    strengths_html = "".join(f'<li style="margin:4px 0;">{s}</li>' for s in result.get("top_strengths", []))
+    strengths_html = "".join(
+        f'<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;">'
+        f'<span style="color:#16a34a;font-size:1em;margin-top:1px;">✓</span>'
+        f'<span style="color:#166534;font-size:0.88em;line-height:1.4;">{s}</span>'
+        f'</div>'
+        for s in result.get("top_strengths", [])
+    )
 
     improvements_html = ""
     for imp in result.get("top_improvements", []):
-        p = imp.get("priority", "")
-        p_color = "#ef4444" if p == "P0" else "#f59e0b" if p == "P1" else "#6b7280"
+        pri = imp.get("priority", "")
+        p_bg   = {"P0": "#fef2f2", "P1": "#fffbeb", "P2": "#f8fafc"}.get(pri, "#f8fafc")
+        p_border = {"P0": "#fecaca", "P1": "#fde68a", "P2": "#e2e8f0"}.get(pri, "#e2e8f0")
+        p_color  = {"P0": "#dc2626", "P1": "#d97706", "P2": "#64748b"}.get(pri, "#64748b")
+        before = imp.get("before", "")
+        after  = imp.get("after", "")
+        before_after = ""
+        if before or after:
+            before_after = f"""
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+              <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:6px;padding:8px 10px;">
+                <div style="font-size:0.7em;font-weight:700;color:#be123c;letter-spacing:.05em;margin-bottom:4px;">BEFORE</div>
+                <div style="font-size:0.8em;color:#4b5563;line-height:1.4;font-family:monospace;">{before}</div>
+              </div>
+              <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:8px 10px;">
+                <div style="font-size:0.7em;font-weight:700;color:#15803d;letter-spacing:.05em;margin-bottom:4px;">AFTER</div>
+                <div style="font-size:0.8em;color:#4b5563;line-height:1.4;font-family:monospace;">{after}</div>
+              </div>
+            </div>"""
         improvements_html += f"""
-        <tr>
-          <td style="padding:8px;"><span style="color:{p_color};font-weight:700;">{p}</span></td>
-          <td style="padding:8px;">{imp.get('area','')}</td>
-          <td style="padding:8px;">{imp.get('change','')}</td>
-          <td style="padding:8px;color:#6b7280;font-size:0.85em;">{imp.get('why_it_matters','')}</td>
-        </tr>"""
+        <div style="background:{p_bg};border:1px solid {p_border};border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="background:{p_color};color:#fff;font-size:0.7em;font-weight:700;padding:2px 8px;border-radius:12px;">{pri}</span>
+            <span style="font-weight:600;color:#1e293b;font-size:0.9em;">{imp.get('area','')}</span>
+          </div>
+          <div style="font-size:0.85em;color:#374151;margin-bottom:4px;">{imp.get('change','')}</div>
+          <div style="font-size:0.8em;color:#6b7280;font-style:italic;">{imp.get('why_it_matters','')}</div>
+          {before_after}
+        </div>"""
 
     source_display = source if len(source) < 60 else source[:57] + "..."
 
     return f"""
-<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:800px;">
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:820px;">
 
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:24px;">
+  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;gap:24px;">
     <div style="text-align:center;min-width:90px;">
       <div style="font-size:3em;font-weight:800;color:{grade_col};line-height:1;">{grade}</div>
       <div style="font-size:0.75em;color:#9ca3af;margin-top:2px;">Grade</div>
@@ -196,33 +230,30 @@ def render_scorecard_html(source: str, result: dict) -> str:
     </div>
   </div>
 
-  <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:0.85em;">
+  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.85em;color:#78350f;">
     <b>Stripe-bar gap:</b> {result.get('stripe_bar_gap','')}
   </div>
 
-  <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
     <thead>
       <tr style="background:#f1f5f9;">
-        <th style="padding:10px 8px;text-align:left;font-size:0.8em;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Dimension</th>
-        <th style="padding:10px 8px;text-align:center;font-size:0.8em;color:#64748b;text-transform:uppercase;">Score</th>
-        <th style="padding:10px 8px;font-size:0.8em;color:#64748b;text-transform:uppercase;">Bar</th>
-        <th style="padding:10px 8px;font-size:0.8em;color:#64748b;text-transform:uppercase;">Weight</th>
+        <th style="padding:10px 8px;text-align:left;font-size:0.78em;color:#64748b;text-transform:uppercase;letter-spacing:.05em;">Dimension</th>
+        <th style="padding:10px 8px;text-align:center;font-size:0.78em;color:#64748b;text-transform:uppercase;">Score</th>
+        <th style="padding:10px 8px;font-size:0.78em;color:#64748b;text-transform:uppercase;">Bar</th>
+        <th style="padding:10px 8px;font-size:0.78em;color:#64748b;text-transform:uppercase;">Weight</th>
       </tr>
     </thead>
     <tbody>{rows}</tbody>
   </table>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;">
-    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px;">
-      <div style="font-weight:700;color:#166534;margin-bottom:8px;">Top Strengths</div>
-      <ul style="margin:0;padding-left:18px;font-size:0.85em;color:#15803d;">{strengths_html}</ul>
-    </div>
-    <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:16px;">
-      <div style="font-weight:700;color:#991b1b;margin-bottom:8px;">Top Improvements</div>
-      <table style="width:100%;font-size:0.8em;border-collapse:collapse;">
-        <tbody>{improvements_html}</tbody>
-      </table>
-    </div>
+  <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px;margin-bottom:20px;">
+    <div style="font-weight:700;color:#166534;font-size:0.95em;margin-bottom:10px;">✅ Top Strengths</div>
+    {strengths_html}
+  </div>
+
+  <div>
+    <div style="font-weight:700;color:#1e293b;font-size:0.95em;margin-bottom:12px;">🔧 Prioritized Improvements</div>
+    {improvements_html}
   </div>
 
 </div>"""
@@ -334,42 +365,81 @@ def _resolve_input(input_type, url, pasted):
         return pasted, "Pasted documentation"
 
 
+LOADING_HTML = """
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:40px 24px;text-align:center;">
+  <div style="display:inline-block;margin-bottom:24px;">
+    <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="20" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+      <circle cx="24" cy="24" r="20" fill="none" stroke="#6366f1" stroke-width="4"
+        stroke-dasharray="30 95" stroke-linecap="round" transform="rotate(-90 24 24)">
+        <animateTransform attributeName="transform" type="rotate"
+          from="0 24 24" to="360 24 24" dur="0.9s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+  <div style="font-size:1.1em;font-weight:600;color:#1e293b;margin-bottom:8px;" id="loading-msg">Fetching documentation...</div>
+  <div style="font-size:0.85em;color:#94a3b8;">Scoring six DX dimensions against the Stripe bar</div>
+  <div style="margin-top:28px;background:#f1f5f9;border-radius:8px;height:8px;width:320px;display:inline-block;overflow:hidden;">
+    <div style="height:8px;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:8px;
+      animation:progress 2.5s ease-in-out infinite;">
+    </div>
+  </div>
+  <style>
+    @keyframes progress {
+      0%   { width: 0%;   margin-left: 0%; }
+      50%  { width: 60%;  margin-left: 20%; }
+      100% { width: 0%;   margin-left: 100%; }
+    }
+  </style>
+</div>
+"""
+
+LOADING_HTML_SCORING = LOADING_HTML.replace("Fetching documentation...", "Scoring with LLM...")
+
+
 def run_single(input_type, url, pasted):
+    # Show loader immediately
+    yield LOADING_HTML, "", "", ""
     try:
         content, source = _resolve_input(input_type, url, pasted)
         if len(content) < 200:
-            return f"Content too short ({len(content)} chars). Try a different URL or paste more text.", "", "", ""
+            yield f"Content too short ({len(content)} chars). Try a different URL or paste more text.", "", "", ""
+            return
+        yield LOADING_HTML_SCORING, "", "", ""
         result = score_documentation(source, content)
         html = render_scorecard_html(source, result)
         md = format_markdown_report(source, result)
         jira = build_jira_ticket(source, result)
         gh = build_github_issue(source, result)
-        return html, md, jira, gh
+        yield html, md, jira, gh
     except json.JSONDecodeError as e:
-        return f"Model returned malformed JSON. Retry. ({e})", "", "", ""
+        yield f"Model returned malformed JSON. Retry. ({e})", "", "", ""
     except requests.RequestException as e:
-        return f"Could not fetch URL: {e}", "", "", ""
+        yield f"Could not fetch URL: {e}", "", "", ""
     except (ValueError, RuntimeError) as e:
-        return str(e), "", "", ""
+        yield str(e), "", "", ""
     except Exception as e:
-        return f"Unexpected error: {type(e).__name__}: {e}", "", "", ""
+        yield f"Unexpected error: {type(e).__name__}: {e}", "", "", ""
 
 
 def run_compare(url_a, url_b):
+    yield LOADING_HTML, ""
     try:
         if not (url_a or "").strip() or not (url_b or "").strip():
-            return "Paste two URLs to compare.", ""
+            yield "Paste two URLs to compare.", ""
+            return
         content_a = fetch_url(url_a.strip())
         content_b = fetch_url(url_b.strip())
+        yield LOADING_HTML_SCORING, ""
         res_a = score_documentation(url_a.strip(), content_a)
         res_b = score_documentation(url_b.strip(), content_b)
         html = render_comparison_html(url_a.strip(), res_a, url_b.strip(), res_b)
         md_a = format_markdown_report(url_a.strip(), res_a)
         md_b = format_markdown_report(url_b.strip(), res_b)
         combined_md = f"# Comparison Report\n\n## A: {url_a}\n\n{md_a}\n\n---\n\n## B: {url_b}\n\n{md_b}"
-        return html, combined_md
+        yield html, combined_md
     except Exception as e:
-        return f"Error: {type(e).__name__}: {e}", ""
+        yield f"Error: {type(e).__name__}: {e}", ""
 
 
 # ──────────────────────────────────────────────
@@ -431,6 +501,7 @@ with gr.Blocks(title="API DX Scorecard", theme=gr.themes.Soft(), css=CSS) as dem
                 run_single,
                 inputs=[input_type, url_box, paste_box],
                 outputs=[scorecard_html, md_out, jira_out, gh_out],
+                show_progress="hidden",
             )
 
         # ── Tab 2: Compare ──────────────────────────────────
@@ -447,6 +518,7 @@ with gr.Blocks(title="API DX Scorecard", theme=gr.themes.Soft(), css=CSS) as dem
                 run_compare,
                 inputs=[url_a, url_b],
                 outputs=[compare_html, compare_md],
+                show_progress="hidden",
             )
 
     gr.Markdown(
