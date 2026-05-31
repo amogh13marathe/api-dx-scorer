@@ -469,7 +469,10 @@ def run_single(input_type, url, pasted):
     except Exception as e:
         err = str(e)
         if "rate_limit_exceeded" in err:
-            yield "⏳ Daily token limit reached on Groq's free tier. Resets every 24 hours — try again later, or upgrade at console.groq.com/settings/billing.", "", "", ""
+            import re as _re
+            wait = _re.search(r'try again in ([^.\']+)', err)
+            wait_str = wait.group(1).strip() if wait else "a short while"
+            yield f"⏳ Token limit reached on Groq's free tier. Try again in {wait_str}. Or upgrade at console.groq.com/settings/billing.", "", "", ""
         else:
             yield f"Unexpected error: {type(e).__name__}: {e}", "", "", ""
 
