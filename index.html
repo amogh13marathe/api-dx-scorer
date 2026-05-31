@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amogh Marathe | Senior Technical Product Manager</title>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KNT1H74BZQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KNT1H74BZQ', {
+    page_title: 'Amogh Marathe Portfolio',
+    page_location: window.location.href
+  });
+</script>
+
+<!-- Open Graph / LinkedIn preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amogh13marathe.github.io">
+<meta property="og:title" content="Amogh Marathe | Senior Technical PM">
+<meta property="og:description" content="8 years building API platforms and AI-powered products. $800K ARR, $1.45M saved, 50M+ transactions. Open to Senior / Staff PM roles.">
+<meta property="og:image" content="https://amogh13marathe.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Amogh Marathe — PM Portfolio">
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amogh Marathe | Senior Technical PM">
+<meta name="twitter:description" content="8 years building API platforms and AI-powered products. $800K ARR, $1.45M saved, 50M+ transactions. Open to Senior / Staff PM roles.">
+<meta name="twitter:image" content="https://amogh13marathe.github.io/og-image.png">
+
+<!-- Search / general -->
+<meta name="description" content="Senior Technical PM with 8 years building monetized API platforms, self-serve developer tools, and AI-powered decisioning engines. $800K ARR, $1.45M in savings.">
+<meta name="author" content="Amogh Marathe">
+<style>
+  :root {
+    --navy: #0f172a;
+    --navy2: #1e293b;
+    --accent: #3b82f6;
+    --accent2: #0ea5e9;
+    --light: #f8fafc;
+    --muted: #94a3b8;
+    --border: #334155;
+    --white: #ffffff;
+    --green: #10b981;
+    --card: #1e293b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { background:var(--navy); color:var(--white); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.6; }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; width:100%; z-index:100;
+    background:rgba(15,23,42,0.95); backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:0 5vw; height:64px;
+  }
+  .nav-brand { font-weight:700; font-size:1.1rem; color:var(--white); text-decoration:none; letter-spacing:.5px; }
+  .nav-brand span { color:var(--accent); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:500; transition:.2s; }
+  .nav-links a:hover { color:var(--white); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height:100vh; display:flex; align-items:center;
+    padding:100px 5vw 60px;
+    background: radial-gradient(ellipse at 70% 50%, rgba(59,130,246,0.12) 0%, transparent 65%);
+  }
+  .hero-inner { max-width:1100px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr auto; gap:4rem; align-items:center; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3);
+    color:var(--accent2); font-size:.8rem; font-weight:600; padding:.3rem .9rem; border-radius:999px;
+    margin-bottom:1.5rem; letter-spacing:.5px; text-transform:uppercase;
+  }
+  .hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent2); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  h1 { font-size:clamp(2.4rem,5vw,4rem); font-weight:800; line-height:1.1; margin-bottom:1rem; }
+  h1 span { background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .hero-sub { font-size:1.15rem; color:var(--muted); margin-bottom:2rem; max-width:520px; line-height:1.7; }
+  .hero-cta { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn-primary {
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff; padding:.75rem 1.8rem; border-radius:8px;
+    text-decoration:none; font-weight:600; font-size:.95rem;
+    transition:transform .2s, box-shadow .2s;
+    box-shadow:0 4px 20px rgba(59,130,246,0.4);
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(59,130,246,0.5); }
+  .btn-secondary {
+    background:transparent; color:var(--white); padding:.75rem 1.8rem; border-radius:8px;
+    text-decoration:none; font-weight:600; font-size:.95rem;
+    border:1.5px solid var(--border); transition:.2s;
+  }
+  .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
+  .avatar {
+    width:260px; height:260px; border-radius:20px;
+    background:linear-gradient(135deg,#1e40af,#0ea5e9);
+    display:flex; align-items:center; justify-content:center;
+    font-size:5rem; font-weight:800; color:#fff;
+    box-shadow:0 20px 60px rgba(59,130,246,0.3);
+    flex-shrink:0; position:relative; overflow:hidden;
+  }
+  .avatar::after {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,.05),transparent);
+  }
+  .hero-meta { display:flex; gap:1.5rem; margin-top:2rem; flex-wrap:wrap; }
+  .meta-item { display:flex; align-items:center; gap:.4rem; color:var(--muted); font-size:.85rem; }
+  .meta-item svg { width:14px; height:14px; }
+
+  /* ── STATS ── */
+  #stats {
+    padding:60px 5vw;
+    background:var(--navy2);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  }
+  .stats-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; }
+  .stat-card {
+    text-align:center; padding:2rem 1rem;
+    border:1px solid var(--border); border-radius:12px;
+    background:var(--navy); transition:.2s;
+  }
+  .stat-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+  .stat-num { font-size:2.4rem; font-weight:800; background:linear-gradient(135deg,var(--accent),var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .stat-label { color:var(--muted); font-size:.85rem; margin-top:.3rem; }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding:80px 5vw; }
+  .section-inner { max-width:1100px; margin:0 auto; }
+  .section-tag { color:var(--accent2); font-size:.8rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:.5rem; }
+  .section-title { font-size:clamp(1.6rem,3vw,2.4rem); font-weight:800; margin-bottom:1rem; }
+  .section-sub { color:var(--muted); max-width:540px; line-height:1.7; margin-bottom:3rem; }
+
+  /* ── ABOUT ── */
+  #about { background:var(--navy); }
+  .about-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:4rem; align-items:start; }
+  .about-text p { color:#cbd5e1; margin-bottom:1rem; line-height:1.8; }
+  .skill-chips { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem; }
+  .chip {
+    background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25);
+    color:#93c5fd; font-size:.78rem; font-weight:600; padding:.3rem .8rem;
+    border-radius:999px; white-space:nowrap;
+  }
+  .focus-list { list-style:none; }
+  .focus-list li { display:flex; align-items:flex-start; gap:.75rem; margin-bottom:1rem; color:#cbd5e1; font-size:.9rem; }
+  .focus-list li::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--accent); margin-top:.4rem; flex-shrink:0; }
+
+  /* ── CASE STUDIES ── */
+  #casestudies { background:var(--navy2); }
+  .cases-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .case-card {
+    background:var(--navy); border:1px solid var(--border); border-radius:16px;
+    padding:2rem; transition:.2s; position:relative; overflow:hidden;
+  }
+  .case-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 12px 40px rgba(59,130,246,0.15); }
+  .case-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+  .case-tag { font-size:.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent2); margin-bottom:.75rem; }
+  .case-title { font-size:1.1rem; font-weight:700; margin-bottom:.75rem; line-height:1.3; }
+  .case-metric { font-size:2rem; font-weight:800; background:linear-gradient(135deg,var(--green),#34d399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:.5rem; }
+  .case-company { font-size:.78rem; color:var(--accent2); font-weight:500; margin-bottom:.75rem; letter-spacing:.2px; opacity:.85; }
+  .case-desc { color:var(--muted); font-size:.87rem; line-height:1.7; }
+  .case-details { margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid var(--border); }
+  .case-detail-item { display:flex; align-items:flex-start; gap:.5rem; color:#94a3b8; font-size:.82rem; margin-bottom:.5rem; }
+  .case-detail-item::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); margin-top:.45rem; flex-shrink:0; }
+
+  /* ── PARTNERS ── */
+  #partners { background:var(--navy2); }
+  .partners-label { text-align:center; color:var(--muted); font-size:.85rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:2rem; }
+  .partners-row { display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; }
+  .partner-chip {
+    background:var(--navy2); border:1px solid var(--border);
+    color:#cbd5e1; font-size:.9rem; font-weight:700;
+    padding:.6rem 1.4rem; border-radius:8px; transition:.2s; letter-spacing:.3px;
+  }
+  .partner-chip:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background:var(--navy2); }
+  .timeline { position:relative; }
+  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--border); }
+  .tl-item { padding-left:2.5rem; margin-bottom:3rem; position:relative; }
+  .tl-dot {
+    position:absolute; left:-7px; top:4px;
+    width:16px; height:16px; border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 0 0 4px var(--navy2);
+  }
+  .tl-date { color:var(--accent2); font-size:.8rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:.3rem; }
+  .tl-company { font-size:1.1rem; font-weight:700; }
+  .tl-role { color:var(--muted); font-size:.9rem; font-style:italic; margin-bottom:.75rem; }
+  .tl-bullets { list-style:none; }
+  .tl-bullets li { display:flex; align-items:flex-start; gap:.6rem; color:#94a3b8; font-size:.87rem; margin-bottom:.5rem; line-height:1.6; }
+  .tl-bullets li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); margin-top:.45rem; flex-shrink:0; }
+  strong.hi { color:var(--white); }
+
+  /* ── SKILLS ── */
+  #skills { background:var(--navy); }
+  .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .skill-group { background:var(--navy2); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
+  .sg-title { font-size:.85rem; font-weight:700; color:var(--accent2); letter-spacing:1px; text-transform:uppercase; margin-bottom:1rem; }
+  .sg-items { display:flex; flex-wrap:wrap; gap:.5rem; }
+  .sg-item { background:rgba(255,255,255,.04); border:1px solid var(--border); color:#cbd5e1; font-size:.8rem; padding:.25rem .7rem; border-radius:6px; }
+
+  /* ── TOOLS ── */
+  #tools { background:var(--navy2); }
+  .tools-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+  .tool-card {
+    background:var(--navy); border:1px solid var(--border); border-radius:16px;
+    padding:2rem; transition:.2s; position:relative; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .tool-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--green),var(--accent2)); }
+  .tool-card:hover { border-color:var(--green); transform:translateY(-4px); box-shadow:0 12px 40px rgba(16,185,129,0.12); }
+  .tool-card.placeholder { border-style:dashed; opacity:.45; align-items:center; justify-content:center; text-align:center; min-height:280px; }
+  .tool-card.placeholder::before { display:none; }
+  .tool-stack { display:flex; flex-wrap:wrap; gap:.4rem; margin:1rem 0; }
+  .tool-chip { background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); color:#6ee7b7; font-size:.75rem; font-weight:600; padding:.2rem .6rem; border-radius:5px; }
+  .tool-btns { display:flex; gap:.75rem; margin-top:1.5rem; flex-wrap:wrap; }
+
+  /* ── CONTACT ── */
+  #contact { background:var(--navy2); text-align:center; }
+  .contact-inner { max-width:700px; margin:0 auto; }
+  .contact-tagline { font-size:1.15rem; color:var(--muted); margin-bottom:2rem; line-height:1.7; }
+  .contact-roles { display:flex; justify-content:center; flex-wrap:wrap; gap:.6rem; margin-bottom:2.5rem; }
+  .contact-role-chip {
+    background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3);
+    color:var(--accent2); font-size:.8rem; font-weight:600;
+    padding:.35rem .9rem; border-radius:999px; letter-spacing:.3px;
+  }
+  .contact-links { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; }
+  .contact-link {
+    display:flex; align-items:center; gap:.6rem;
+    background:var(--navy); border:1.5px solid var(--border);
+    color:var(--white); text-decoration:none; padding:.85rem 1.8rem;
+    border-radius:10px; font-weight:600; font-size:.9rem; transition:.2s;
+    min-width:200px; justify-content:center;
+  }
+  .contact-link:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer { background:var(--navy); border-top:1px solid var(--border); padding:1.5rem 5vw; text-align:center; color:var(--muted); font-size:.82rem; }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display:none; flex-direction:column; gap:5px; cursor:pointer;
+    background:none; border:none; padding:4px;
+  }
+  .hamburger span {
+    display:block; width:24px; height:2px;
+    background:var(--white); border-radius:2px; transition:.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:900px){
+    .hero-inner { grid-template-columns:1fr; }
+    .avatar { width:180px; height:180px; font-size:3.5rem; }
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+    .cases-grid { grid-template-columns:1fr; }
+    .tools-grid { grid-template-columns:1fr; }
+    .about-grid { grid-template-columns:1fr; }
+    .skills-grid { grid-template-columns:1fr; }
+    .hamburger { display:flex; }
+    .nav-links {
+      display:none; flex-direction:column; gap:0;
+      position:absolute; top:64px; left:0; right:0;
+      background:rgba(15,23,42,0.98); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      padding:.5rem 0;
+    }
+    .nav-links.open { display:flex; }
+    .nav-links li { width:100%; }
+    .nav-links a {
+      display:block; padding:.9rem 5vw;
+      font-size:1rem; border-bottom:1px solid var(--border);
+    }
+    .nav-links li:last-child a { border-bottom:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">Amogh <span>Marathe</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#casestudies" onclick="closeMenu()">Featured Work</a></li>
+    <li><a href="#partners" onclick="closeMenu()">Partners</a></li>
+    <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+    <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+    <li><a href="#tools" onclick="closeMenu()">PM Tools</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Amogh<br><span>Marathe</span></h1>
+      <p class="hero-sub">Senior Technical PM with 8 years building monetized API platforms, self-serve developer tools, and AI-powered decisioning engines at enterprise scale.</p>
+      <div class="hero-cta">
+        <a href="#casestudies" class="btn-primary">View Featured Work</a>
+        <a href="Amogh_Marathe_Resume.pdf" download class="btn-secondary" onclick="gtag('event','resume_download',{event_category:'engagement',event_label:'hero_button'})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:.4rem"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Denver, CO
+        </span>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          SquareTrade / Allstate Protection Plans
+        </span>
+        <span class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          8 Years Experience
+        </span>
+      </div>
+    </div>
+    <div class="avatar">AM</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-num">$800K</div>
+      <div class="stat-label">New ARR — Subscription Renewals API (0 to 1)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$1.45M</div>
+      <div class="stat-label">Annual Operational Savings across platform initiatives</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">50M+</div>
+      <div class="stat-label">Annual API transactions at less than 5% failure rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">80+</div>
+      <div class="stat-label">Global retail partners scaled on data ingestion platform</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">About</div>
+        <h2 class="section-title">Building platforms that generate revenue and eliminate toil</h2>
+        <p>I am a Senior Technical PM who operates at the intersection of API monetization, developer experience, and AI-powered automation. My work centers on one question: how do you make complex systems so simple that non-technical users can run them without engineering help?</p>
+        <p>At SquareTrade (Allstate Protection Plans), I own platform and developer experience for one of the largest warranty and protection plan providers in North America, processing 50M+ transactions annually across Walmart, Target, Home Depot, and 80+ global retail partners.</p>
+        <p>Before that, I spent four years at DISH Network building smart home ecosystem integrations with Google Nest, Ring, and Arlo, and designing the matching algorithm that drove a 20% lift in same-day installation revenue.</p>
+        <p>I hold an MBA from CU Boulder (Leeds Business Scholarship), an MS in IT and Management from UT Dallas, and a BS in Computer Engineering from the University of Pune.</p>
+        <div class="skill-chips">
+          <span class="chip">API Product Management</span>
+          <span class="chip">Data Monetization</span>
+          <span class="chip">Developer Experience</span>
+          <span class="chip">AI / Agentic Systems</span>
+          <span class="chip">Platform Strategy</span>
+          <span class="chip">0-to-1 Products</span>
+          <span class="chip">Enterprise SaaS</span>
+          <span class="chip">Subscription Billing</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-tag" style="margin-top:0">Focus Areas</div>
+        <h3 style="font-size:1.1rem;margin-bottom:1.5rem;">What I build and how I think</h3>
+        <ul class="focus-list">
+          <li>APIs as products with commercial roadmaps, not just technical surfaces</li>
+          <li>Self-serve tooling that removes engineering bottlenecks for non-technical operators</li>
+          <li>AI agents that automate decisions while keeping humans in the approval loop</li>
+          <li>Data ingestion platforms that scale from prototype to 50M+ transactions without breaking</li>
+          <li>Cross-functional execution across distributed engineering organizations</li>
+          <li>Revenue attribution from platform investments (ARR, savings, partner retention)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORK -->
+<section id="casestudies">
+  <div class="section-inner">
+    <div class="section-tag">Featured Work</div>
+    <h2 class="section-title">Shipped products. Proven results.</h2>
+    <p class="section-sub">Three 0-to-1 initiatives I owned end-to-end at SquareTrade &mdash; from problem identification through engineering alignment, launch, and revenue measurement.</p>
+    <div class="cases-grid">
+
+      <div class="case-card">
+        <div class="case-tag">AI-Powered Self-Serve</div>
+        <div class="case-title">Natural Language Rules Engine + AI Agents</div>
+        <div class="case-metric">$1.45M Saved Annually</div>
+        <div class="case-company">SquareTrade &mdash; Senior Technical PM, Platform and Developer Experience</div>
+        <p class="case-desc">Replaced a brittle hard-coded policy engine with a configurable Natural Language Rules Engine, then layered Microsoft Copilot AI agents to translate plain-English requirements into SpEL expressions and reverse-translate back for business reviewer approval.</p>
+        <div class="case-details">
+          <div class="case-detail-item">90% reduction in rule-setup errors after AI agent integration</div>
+          <div class="case-detail-item">Non-technical users now configure complex billing decision trees independently</div>
+          <div class="case-detail-item">Two-step agentic loop: English &rarr; SpEL rule &rarr; plain English for human approval</div>
+          <div class="case-detail-item">$450K savings (rules engine) + $1M savings (self-serve Email/SMS platform)</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-tag">API Monetization</div>
+        <div class="case-title">Subscription Renewals API</div>
+        <div class="case-metric">$800K ARR</div>
+        <div class="case-company">SquareTrade &mdash; Technical PM, Data API and Monetization</div>
+        <p class="case-desc">Identified a post-expiration gap in the partner billing lifecycle. Built a 0-to-1 renewal API using a post-expiration timing model that recovered lapsed subscriptions without any marketing spend.</p>
+        <div class="case-details">
+          <div class="case-detail-item">Partner: Home Depot USA &mdash; $800K new ARR at zero marketing cost</div>
+          <div class="case-detail-item">Discovered pre-expiration outreach triggered a costly claim spike; redesigned the timing model</div>
+          <div class="case-detail-item">Stack: REST API, schema validation, ETL pipeline, Informatica/Postgres</div>
+          <div class="case-detail-item">Scaled model to EU retail markets post-launch</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-tag">Developer Experience</div>
+        <div class="case-title">Enterprise Data Ingestion Platform</div>
+        <div class="case-metric">40% Faster Partner Onboarding</div>
+        <div class="case-company">SquareTrade &mdash; Technical PM, Data API and Monetization</div>
+        <p class="case-desc">Scaled the enterprise warranty ingestion platform from 40 to 80+ global retail partners while holding API failure rate below 5% at 50M+ annual transactions.</p>
+        <div class="case-details">
+          <div class="case-detail-item">Enterprise partners: Walmart, Target, Home Depot, Staples Canada</div>
+          <div class="case-detail-item">Redesigned API documentation, testing sandbox, and onboarding flow end-to-end</div>
+          <div class="case-detail-item">Launched Invoice Reporting API enabling programmatic billing reconciliation for EU retailers</div>
+          <div class="case-detail-item">Schema validation and error-handling frameworks sustaining &lt;5% failure at scale</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-inner">
+    <p class="partners-label">Retail and ecosystem partners across my career</p>
+    <div class="partners-row">
+      <span class="partner-chip">Walmart</span>
+      <span class="partner-chip">Target</span>
+      <span class="partner-chip">Home Depot</span>
+      <span class="partner-chip">Staples Canada</span>
+      <span class="partner-chip">Google Nest</span>
+      <span class="partner-chip">Amazon Ring</span>
+      <span class="partner-chip">Arlo</span>
+      <span class="partner-chip">Microsoft Copilot</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-tag">Experience</div>
+    <h2 class="section-title">8 years of building at scale</h2>
+    <p class="section-sub">From product analyst to senior technical PM, every role has been focused on platforms, integrations, and measurable outcomes.</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Feb 2025 &ndash; Present</div>
+        <div class="tl-company">SquareTrade (Allstate Protection Plans) &mdash; Denver, CO</div>
+        <div class="tl-role">Senior Technical Product Manager, Platform and Developer Experience</div>
+        <ul class="tl-bullets">
+          <li>Built a self-serve Email/SMS notification platform eliminating engineering dependency for business teams, saving <strong class="hi">$1M annually</strong>.</li>
+          <li>Led transition to a Natural Language Rules Engine, enabling non-technical users to configure billing decision trees, saving <strong class="hi">$450K annually</strong>.</li>
+          <li>Integrated AI agents using Microsoft Copilot to automate rule translation (English to SpEL and back), reducing setup errors by <strong class="hi">90%</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Jan 2022 &ndash; Feb 2025</div>
+        <div class="tl-company">SquareTrade (Allstate Protection Plans) &mdash; Denver, CO</div>
+        <div class="tl-role">Technical Product Manager, Data API and Monetization</div>
+        <ul class="tl-bullets">
+          <li>Identified post-expiration billing gap and built 0-to-1 Subscription Renewals API generating <strong class="hi">$800K ARR</strong> from Home Depot USA with zero marketing spend.</li>
+          <li>Owned Data API roadmap for Walmart and Target, maintaining <strong class="hi">less than 5% failure rate</strong> across 50M+ annual transactions.</li>
+          <li>Scaled warranty ingestion platform from 40 to <strong class="hi">80+ global retail partners</strong>.</li>
+          <li>Reduced partner onboarding time by <strong class="hi">40%</strong> via redesigned documentation and testing sandbox.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Aug 2021 &ndash; Jan 2022</div>
+        <div class="tl-company">OnTech Smart Services (DISH Network) &mdash; Greater Denver, CO</div>
+        <div class="tl-role">Senior Technical Product Manager</div>
+        <ul class="tl-bullets">
+          <li>Designed Smart Home Advisor matching algorithm driving a <strong class="hi">20% increase</strong> in same-day installation revenue.</li>
+          <li>Launched dynamic pricing engine for installation services with real-time incentive waivers.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Feb 2020 &ndash; Aug 2021</div>
+        <div class="tl-company">OnTech Smart Services (DISH Network) &mdash; Greater Denver, CO</div>
+        <div class="tl-role">Technical Product Manager II</div>
+        <ul class="tl-bullets">
+          <li>Led API integration strategy for Google Nest, Ring, and Arlo ecosystems across a <strong class="hi">17-engineer matrixed team</strong>.</li>
+          <li>Enabled unified service fulfillment across disparate smart home hardware platforms.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-date">Nov 2017 &ndash; Feb 2020</div>
+        <div class="tl-company">DISH Network &mdash; Greater Denver, CO</div>
+        <div class="tl-role">Product Analyst II / III</div>
+        <ul class="tl-bullets">
+          <li>Defined SOAP-to-REST migration strategy for legacy enterprise systems, producing architecture documentation adopted by <strong class="hi">50+ developers</strong>.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">Skills</div>
+    <h2 class="section-title">Technical depth across the stack</h2>
+    <p class="section-sub">Engineering degree foundation, 8 years of hands-on platform PM work, and direct production AI integration experience.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="sg-title">Product Disciplines</div>
+        <div class="sg-items">
+          <span class="sg-item">API Product Management</span>
+          <span class="sg-item">Platform Strategy</span>
+          <span class="sg-item">Data Monetization</span>
+          <span class="sg-item">Developer Experience</span>
+          <span class="sg-item">0-to-1 Product Launches</span>
+          <span class="sg-item">Subscription Billing</span>
+          <span class="sg-item">Go-to-Market Execution</span>
+          <span class="sg-item">Cross-functional Alignment</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title">Technical Stack</div>
+        <div class="sg-items">
+          <span class="sg-item">REST / SOAP APIs</span>
+          <span class="sg-item">SQL</span>
+          <span class="sg-item">ETL Pipelines</span>
+          <span class="sg-item">Informatica</span>
+          <span class="sg-item">Postgres</span>
+          <span class="sg-item">Postman</span>
+          <span class="sg-item">Tableau</span>
+          <span class="sg-item">Microsoft Copilot</span>
+          <span class="sg-item">SpEL Expressions</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title">Education and Certs</div>
+        <div class="sg-items">
+          <span class="sg-item">MBA &mdash; CU Boulder</span>
+          <span class="sg-item">MS IT and Management &mdash; UT Dallas</span>
+          <span class="sg-item">BS Computer Engineering &mdash; Pune</span>
+          <span class="sg-item">Certified Scrum Master (CSM)</span>
+          <span class="sg-item">Certified Scrum Product Owner (CSPO)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PM TOOLS -->
+<section id="tools">
+  <div class="section-inner">
+    <div class="section-tag">PM Tools</div>
+    <h2 class="section-title">Tools I built to solve real PM problems</h2>
+    <p class="section-sub">Open-source tooling built on a free stack. Each one reflects a gap I ran into doing actual product work.</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="case-tag">Developer Experience &middot; AI</div>
+        <div class="case-title" style="font-size:1.2rem;">API DX Scorecard</div>
+        <p class="case-desc" style="margin-top:.5rem;">Replaces "this feels rough" with a measurable rubric. Paste a URL, get a weighted scorecard across six DX dimensions, a letter grade, evidence quoted from the actual docs, and a prioritized fix list ready to drop into a sprint. Calibrated against seven industry benchmarks: Stripe (examples), Twilio (errors), Plaid (completeness), Cloudflare (consistency), Fastly (structure), Shopify (versioning), GitHub (breadth).</p>
+        <div class="tool-stack">
+          <span class="tool-chip">Gradio</span>
+          <span class="tool-chip">Groq</span>
+          <span class="tool-chip">Llama 3.3 70B</span>
+          <span class="tool-chip">HuggingFace Spaces</span>
+          <span class="tool-chip">$0 to run</span>
+        </div>
+        <div class="case-details" style="flex:1;">
+          <div class="case-detail-item">Scores Clarity, Completeness, Example Quality, Error Handling, Onboarding Friction, Consistency</div>
+          <div class="case-detail-item">Export scorecard as Jira ticket (wiki markup) or GitHub issue with collapsible evidence</div>
+          <div class="case-detail-item">Side-by-side mode: score two API docs and auto-pick the winner</div>
+        </div>
+        <div class="tool-btns">
+          <a href="https://huggingface.co/spaces/amogh-pm/api-dx-scorer" target="_blank" rel="noopener"
+             class="btn-primary" style="font-size:.85rem;padding:.6rem 1.3rem;"
+             onclick="gtag('event','tool_open',{event_category:'tools',event_label:'api_dx_scorer'})">
+            Try it live ↗
+          </a>
+          <a href="/projects/api-dx-scorer.html" class="btn-secondary" style="font-size:.85rem;padding:.6rem 1.3rem;">
+            Case study
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card placeholder">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🔧</div>
+        <div style="font-weight:700;color:var(--muted);margin-bottom:.4rem;">Next tool in progress</div>
+        <div style="font-size:.82rem;color:var(--muted);">PRD quality scorer — same free stack.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="section-tag" style="text-align:center">Get in Touch</div>
+      <h2 class="section-title">Let&rsquo;s build something together.</h2>
+      <div class="contact-roles">
+        <span class="contact-role-chip">Senior PM</span>
+        <span class="contact-role-chip">Staff PM</span>
+        <span class="contact-role-chip">Platform PM</span>
+        <span class="contact-role-chip">API Product</span>
+        <span class="contact-role-chip">Developer Experience</span>
+        <span class="contact-role-chip">Data Platform PM</span>
+        <span class="contact-role-chip">AI / Agentic Products</span>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:amogh13marathe@gmail.com" class="contact-link" onclick="gtag('event','email_click',{event_category:'engagement',event_label:'contact_section'})">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Me
+        </a>
+        <a href="https://linkedin.com/in/amoghmarathe" target="_blank" rel="noopener" class="contact-link" onclick="gtag('event','linkedin_click',{event_category:'engagement',event_label:'contact_section'})">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Amogh Marathe &nbsp;&middot;&nbsp; Denver, CO &nbsp;&middot;&nbsp; 2026
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#fff' : '';
+    });
+  });
+
+  const counters = document.querySelectorAll('.stat-num');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.3 });
+  counters.forEach(c => {
+    c.style.opacity = '0';
+    c.style.transform = 'translateY(20px)';
+    c.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(c);
+  });
+
+  const sectionLabels = {
+    hero: 'Hero', stats: 'Stats', about: 'About',
+    casestudies: 'Featured Work', partners: 'Partners',
+    experience: 'Experience', skills: 'Skills',
+    tools: 'PM Tools', contact: 'Contact'
+  };
+  const sectionsSeen = new Set();
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !sectionsSeen.has(e.target.id)) {
+        sectionsSeen.add(e.target.id);
+        gtag('event', 'section_viewed', {
+          event_category: 'scroll_depth',
+          event_label: sectionLabels[e.target.id] || e.target.id
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('section[id]').forEach(s => sectionObserver.observe(s));
+
+  const params = new URLSearchParams(window.location.search);
+  const utmSource = params.get('utm_source');
+  if (utmSource) {
+    gtag('event', 'utm_visit', {
+      event_category: 'traffic_source',
+      event_label: utmSource,
+      utm_medium: params.get('utm_medium') || 'unknown',
+      utm_campaign: params.get('utm_campaign') || 'unknown'
+    });
+  }
+</script>
+</body>
+</html>
