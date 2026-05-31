@@ -28,7 +28,8 @@ from prompts import RUBRIC, build_system_prompt, build_user_prompt, build_jira_t
 # Config
 # ──────────────────────────────────────────────
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL_PRIMARY  = "llama-3.3-70b-versatile"   # 100K TPD free tier
+MODEL_FALLBACK = "llama-3.1-8b-instant"       # 500K TPD free tier — auto-used if primary hits rate limit
 MAX_DOC_CHARS = 18_000
 REQUEST_TIMEOUT = 15
 
@@ -88,17 +89,30 @@ def score_documentation(source_label: str, content: str) -> dict:
             "(Settings → Variables and secrets). Get a free key at https://console.groq.com."
         )
     content = _truncate(content)
-    completion = _client.chat.completions.create(
-        model=MODEL,
-        temperature=0.2,
-        max_tokens=2000,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": build_system_prompt()},
-            {"role": "user", "content": build_user_prompt(source_label, content)},
-        ],
+    messages = [
+        {"role": "system", "content": build_system_prompt()},
+        {"role": "user", "content": build_user_prompt(source_label, content)},
+    ]
+    for model in (MODEL_PRIMARY, MODEL_FALLBACK):
+        try:
+            completion = _client.chat.completions.create(
+                model=model,
+                temperature=0.2,
+                max_tokens=2000,
+                response_format={"type": "json_object"},
+                messages=messages,
+            )
+            return json.loads(completion.choices[0].message.content)
+        except Exception as e:
+            err = str(e)
+            if "rate_limit_exceeded" in err and model == MODEL_PRIMARY:
+                # Primary exhausted — try fallback silently
+                continue
+            raise
+    raise RuntimeError(
+        "Daily token limit reached on both models. Groq free tier resets every 24 hours. "
+        "Try again tomorrow, or upgrade at console.groq.com/settings/billing."
     )
-    return json.loads(completion.choices[0].message.content)
 
 
 def compute_overall(scores: dict) -> tuple[float, str]:
@@ -453,7 +467,11 @@ def run_single(input_type, url, pasted):
     except (ValueError, RuntimeError) as e:
         yield str(e), "", "", ""
     except Exception as e:
-        yield f"Unexpected error: {type(e).__name__}: {e}", "", "", ""
+        err = str(e)
+        if "rate_limit_exceeded" in err:
+            yield "⏳ Daily token limit reached on Groq's free tier. Resets every 24 hours — try again later, or upgrade at console.groq.com/settings/billing.", "", "", ""
+        else:
+            yield f"Unexpected error: {type(e).__name__}: {e}", "", "", ""
 
 
 def run_compare(url_a, url_b):
