@@ -523,7 +523,17 @@ CSS = """
 .export-box textarea { font-family: monospace; font-size: 0.82em; }
 """
 
-with gr.Blocks(title="API DX Scorecard", theme=gr.themes.Soft(), css=CSS) as demo:
+GA_HEAD = """
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KNT1H74BZQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KNT1H74BZQ');
+</script>
+"""
+
+with gr.Blocks(title="API DX Scorecard", theme=gr.themes.Soft(), css=CSS, head=GA_HEAD) as demo:
     gr.Markdown("# 🔌 API DX Scorecard")
     gr.Markdown(DESCRIPTION)
 
