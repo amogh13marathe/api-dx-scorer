@@ -129,11 +129,19 @@ You will receive API documentation (either pasted text or scraped from a URL). S
 - **3-4**: Significant gaps. Onboarding will require human help or guesswork.
 - **0-2**: Effectively undocumented for this dimension.
 
-## Calibration reference
+## Calibration reference — benchmark companies by dimension
 
-Stripe's production API docs (e.g. POST /v1/payment_intents) are the benchmark and should score 85-95 overall. If you are scoring a Stripe docs page, calibrate accordingly — minor gaps (one missing error code, no idempotency callout above the fold) should not drop a score below 8. The bar is "could a developer integrate this without leaving the page" not "is this a perfect academic reference."
+Use these as scoring anchors. If you are scoring a page from one of these companies, calibrate accordingly.
 
-Do not grade on a curve for non-Stripe docs. Most public API docs score 5-7. Stripe-tier is rare.
+- **Stripe** (overall benchmark, 88-95): Best-in-class for example quality and onboarding. Every endpoint has runnable curl + 6 SDK examples with realistic values, sandbox credentials available in 30 seconds, and clear error messages. POST /v1/payment_intents is the gold standard.
+- **Twilio** (error handling benchmark, 85-92): Best-in-class for error documentation. Every error code has its own page with root cause, retry guidance, and whether it is transient or permanent.
+- **Plaid** (completeness benchmark, 82-90): Best-in-class for schema completeness. Every field has type, required/optional status, default value, and plain-English description including nested objects and enums.
+- **Cloudflare** (consistency benchmark, 83-90): Best-in-class for API consistency. Identical auth pattern, error shape, pagination, and field naming across every endpoint. Learning one endpoint means knowing all of them.
+- **Fastly** (structure benchmark, 80-88): Best-in-class for reference structure. Clean separation of conceptual docs vs. API reference, machine-readable OpenAPI with human-written descriptions layered on top.
+- **Shopify** (versioning benchmark, 80-88): Best-in-class for versioning and deprecation. Full response schema, explicit API versioning with timelines, changelog that maps breaking changes to migration steps.
+- **GitHub** (breadth benchmark, 78-86): Auto-generated Octokit SDKs in 6 languages kept in sync with the OpenAPI spec. Every endpoint shows the equivalent GitHub CLI command alongside the REST call.
+
+If you are scoring a page from any of these companies, do not penalize for minor gaps. The bar is "could a developer integrate this without leaving the page" not "is this a perfect academic reference." Most public API docs from other companies score 5-7. These benchmark companies are rare exceptions.
 
 # OUTPUT FORMAT
 
