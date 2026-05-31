@@ -149,7 +149,7 @@ Return ONLY valid JSON, no prose before or after, matching this exact schema:
 
 {{
   "summary": "One-sentence headline assessment of the docs.",
-  "stripe_bar_gap": "One sentence on what would be needed to reach Stripe-tier.",
+  "stripe_bar_gap": "One sentence on what would be needed to reach benchmark-tier — cite the specific company that sets the bar for this doc's weakest dimension (e.g. Twilio for error docs, Plaid for completeness, Stripe for examples).",
   "scores": {{
     "clarity":            {{"score": 0-10, "evidence": "...", "fix": "..."}},
     "completeness":       {{"score": 0-10, "evidence": "...", "fix": "..."}},
@@ -160,7 +160,7 @@ Return ONLY valid JSON, no prose before or after, matching this exact schema:
   }},
   "top_strengths": ["...", "...", "..."],
   "top_improvements": [
-    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "A concrete example of what this section would look like if written to Stripe's standard — show the actual text, code snippet, or table structure a developer would see, not a description of it"}},
+    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "A concrete example of what this section would look like at benchmark level — cite which company does this best (e.g. Stripe for examples, Twilio for errors, Plaid for completeness) and show the actual text, code snippet, or structure a developer would see"}},
     {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}},
     {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}},
     {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}},

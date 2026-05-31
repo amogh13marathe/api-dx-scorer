@@ -247,7 +247,7 @@ def render_scorecard_html(source: str, result: dict) -> str:
         if example:
             example_block = f"""
             <div style="margin-top:10px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:10px 12px;">
-              <div style="font-size:0.7em;font-weight:700;color:#0369a1;letter-spacing:.06em;margin-bottom:6px;">⚡ STRIPE-BAR EXAMPLE</div>
+              <div style="font-size:0.7em;font-weight:700;color:#0369a1;letter-spacing:.06em;margin-bottom:6px;">⚡ BENCHMARK EXAMPLE</div>
               <div style="font-size:0.82em;color:#0f172a;line-height:1.5;font-family:'SFMono-Regular',Consolas,monospace;white-space:pre-wrap;">{example}</div>
             </div>"""
         improvements_html += f"""
@@ -281,7 +281,7 @@ def render_scorecard_html(source: str, result: dict) -> str:
   </div>
 
   <div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.88em;color:#1c1917;">
-    <span style="font-weight:700;color:#92400e;">⚡ Stripe-bar gap: </span><span style="color:#1c1917;">{result.get('stripe_bar_gap','')}</span>
+    <span style="font-weight:700;color:#92400e;">⚡ Gap vs. industry benchmark: </span><span style="color:#1c1917;">{result.get('stripe_bar_gap','')}</span>
   </div>
 
   <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
