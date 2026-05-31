@@ -167,9 +167,9 @@ def render_scorecard_html(source: str, result: dict) -> str:
           <td style="padding:10px 8px;color:#6b7280;font-size:0.85em;">{int(r['weight']*100)}%</td>
         </tr>
         <tr>
-          <td colspan="4" style="padding:2px 8px 12px 8px;font-size:0.82em;color:#4b5563;border-bottom:1px solid #f3f4f6;">
-            <b>Evidence:</b> {s['evidence']}<br>
-            <b>Fix:</b> {s['fix']}
+          <td colspan="4" style="padding:4px 10px 14px 10px;font-size:0.84em;color:#1e293b;border-bottom:1px solid #e2e8f0;background:#fafafa;">
+            <span style="font-weight:700;color:#334155;">Evidence:</span> <span style="color:#334155;">{s['evidence']}</span><br style="margin-bottom:4px;">
+            <span style="font-weight:700;color:#0f172a;">Fix:</span> <span style="color:#0f172a;">{s['fix']}</span>
           </td>
         </tr>"""
 
@@ -208,8 +208,8 @@ def render_scorecard_html(source: str, result: dict) -> str:
             <span style="background:{p_color};color:#fff;font-size:0.7em;font-weight:700;padding:2px 8px;border-radius:12px;">{pri}</span>
             <span style="font-weight:600;color:#1e293b;font-size:0.9em;">{imp.get('area','')}</span>
           </div>
-          <div style="font-size:0.85em;color:#374151;margin-bottom:4px;">{imp.get('change','')}</div>
-          <div style="font-size:0.8em;color:#6b7280;font-style:italic;">{imp.get('why_it_matters','')}</div>
+          <div style="font-size:0.87em;color:#1e293b;margin-bottom:4px;font-weight:500;">{imp.get('change','')}</div>
+          <div style="font-size:0.82em;color:#475569;font-style:italic;">{imp.get('why_it_matters','')}</div>
           {before_after}
         </div>"""
 
@@ -224,14 +224,14 @@ def render_scorecard_html(source: str, result: dict) -> str:
       <div style="font-size:0.75em;color:#9ca3af;margin-top:2px;">Grade</div>
     </div>
     <div>
-      <div style="font-size:1.5em;font-weight:700;color:#1e293b;">{overall:.1f} <span style="font-size:0.6em;color:#9ca3af;">/ 100</span></div>
-      <div style="font-size:0.85em;color:#64748b;margin-top:4px;word-break:break-all;">{source_display}</div>
-      <div style="font-size:0.82em;color:#94a3b8;margin-top:6px;font-style:italic;">{result.get('summary','')}</div>
+      <div style="font-size:1.5em;font-weight:700;color:#0f172a;">{overall:.1f} <span style="font-size:0.6em;color:#64748b;">/ 100</span></div>
+      <div style="font-size:0.85em;color:#334155;margin-top:4px;word-break:break-all;font-weight:500;">{source_display}</div>
+      <div style="font-size:0.84em;color:#475569;margin-top:6px;font-style:italic;">{result.get('summary','')}</div>
     </div>
   </div>
 
-  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.85em;color:#78350f;">
-    <b>Stripe-bar gap:</b> {result.get('stripe_bar_gap','')}
+  <div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.88em;color:#1c1917;">
+    <span style="font-weight:700;color:#92400e;">⚡ Stripe-bar gap: </span><span style="color:#1c1917;">{result.get('stripe_bar_gap','')}</span>
   </div>
 
   <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
