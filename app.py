@@ -187,20 +187,13 @@ def render_scorecard_html(source: str, result: dict) -> str:
         p_bg   = {"P0": "#fef2f2", "P1": "#fffbeb", "P2": "#f8fafc"}.get(pri, "#f8fafc")
         p_border = {"P0": "#fecaca", "P1": "#fde68a", "P2": "#e2e8f0"}.get(pri, "#e2e8f0")
         p_color  = {"P0": "#dc2626", "P1": "#d97706", "P2": "#64748b"}.get(pri, "#64748b")
-        before = imp.get("before", "")
-        after  = imp.get("after", "")
-        before_after = ""
-        if before or after:
-            before_after = f"""
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-              <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:6px;padding:8px 10px;">
-                <div style="font-size:0.7em;font-weight:700;color:#be123c;letter-spacing:.05em;margin-bottom:4px;">BEFORE</div>
-                <div style="font-size:0.8em;color:#4b5563;line-height:1.4;font-family:monospace;">{before}</div>
-              </div>
-              <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:8px 10px;">
-                <div style="font-size:0.7em;font-weight:700;color:#15803d;letter-spacing:.05em;margin-bottom:4px;">AFTER</div>
-                <div style="font-size:0.8em;color:#4b5563;line-height:1.4;font-family:monospace;">{after}</div>
-              </div>
+        example = imp.get("stripe_bar_example", "")
+        example_block = ""
+        if example:
+            example_block = f"""
+            <div style="margin-top:10px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:10px 12px;">
+              <div style="font-size:0.7em;font-weight:700;color:#0369a1;letter-spacing:.06em;margin-bottom:6px;">⚡ STRIPE-BAR EXAMPLE</div>
+              <div style="font-size:0.82em;color:#0f172a;line-height:1.5;font-family:'SFMono-Regular',Consolas,monospace;white-space:pre-wrap;">{example}</div>
             </div>"""
         improvements_html += f"""
         <div style="background:{p_bg};border:1px solid {p_border};border-radius:8px;padding:12px 14px;margin-bottom:10px;">
@@ -210,7 +203,7 @@ def render_scorecard_html(source: str, result: dict) -> str:
           </div>
           <div style="font-size:0.87em;color:#1e293b;margin-bottom:4px;font-weight:500;">{imp.get('change','')}</div>
           <div style="font-size:0.82em;color:#475569;font-style:italic;">{imp.get('why_it_matters','')}</div>
-          {before_after}
+          {example_block}
         </div>"""
 
     source_display = source if len(source) < 60 else source[:57] + "..."

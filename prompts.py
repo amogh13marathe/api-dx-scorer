@@ -123,13 +123,17 @@ You will receive API documentation (either pasted text or scraped from a URL). S
 
 # SCORING ANCHORS
 
-- **9-10**: Stripe-tier. A developer can integrate without leaving the page.
-- **7-8**: Solid. Minor friction; mostly self-serve.
-- **5-6**: Functional but rough. Developer will need to experiment or DM support.
-- **3-4**: Significant gaps. Onboarding will require human help.
+- **9-10**: Stripe/Plaid-tier. A developer can integrate without leaving the page. Every field typed, every error enumerated, runnable examples with realistic values, sandbox path clear.
+- **7-8**: Solid. Minor friction; mostly self-serve. Missing a few edge cases or error codes.
+- **5-6**: Functional but rough. Developer will need to experiment or check a forum.
+- **3-4**: Significant gaps. Onboarding will require human help or guesswork.
 - **0-2**: Effectively undocumented for this dimension.
 
-Do not grade on a curve. Most public API docs score 5-7. Stripe-tier is rare.
+## Calibration reference
+
+Stripe's production API docs (e.g. POST /v1/payment_intents) are the benchmark and should score 85-95 overall. If you are scoring a Stripe docs page, calibrate accordingly — minor gaps (one missing error code, no idempotency callout above the fold) should not drop a score below 8. The bar is "could a developer integrate this without leaving the page" not "is this a perfect academic reference."
+
+Do not grade on a curve for non-Stripe docs. Most public API docs score 5-7. Stripe-tier is rare.
 
 # OUTPUT FORMAT
 
@@ -148,11 +152,11 @@ Return ONLY valid JSON, no prose before or after, matching this exact schema:
   }},
   "top_strengths": ["...", "...", "..."],
   "top_improvements": [
-    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "before": "Short example of the current state (quote from docs or description of what's missing)", "after": "Short example of what it should look like after the fix"}},
-    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}},
-    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}},
-    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}},
-    {{"priority": "P2", "area": "...", "change": "...", "why_it_matters": "...", "before": "...", "after": "..."}}
+    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "A concrete example of what this section would look like if written to Stripe's standard — show the actual text, code snippet, or table structure a developer would see, not a description of it"}},
+    {{"priority": "P0", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}},
+    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}},
+    {{"priority": "P1", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}},
+    {{"priority": "P2", "area": "...", "change": "...", "why_it_matters": "...", "stripe_bar_example": "..."}}
   ]
 }}
 
