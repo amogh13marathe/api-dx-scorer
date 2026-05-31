@@ -125,11 +125,50 @@ def compute_overall(scores: dict) -> tuple[float, str]:
 # ──────────────────────────────────────────────
 
 GRADE_COLOR = {
-    "A": "#22c55e", "A−": "#4ade80",
-    "B+": "#86efac", "B": "#fbbf24", "B−": "#f59e0b",
-    "C+": "#f97316", "C": "#ef4444", "C−": "#dc2626",
-    "D": "#991b1b", "F": "#7f1d1d",
+    "A": "#16a34a", "A−": "#22c55e",
+    "B+": "#65a30d", "B": "#ca8a04", "B−": "#d97706",
+    "C+": "#ea580c", "C": "#dc2626", "C−": "#b91c1c",
+    "D": "#7f1d1d", "F": "#450a0a",
 }
+
+GRADING_RUBRIC_HTML = """
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:820px;margin-bottom:20px;">
+  <details style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 16px;">
+    <summary style="font-weight:700;color:#1e293b;font-size:0.9em;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;">
+      <span>📊</span> How grades are calculated
+    </summary>
+    <div style="margin-top:14px;">
+      <div style="font-size:0.82em;color:#475569;margin-bottom:12px;">
+        Overall score = weighted average of six dimensions × 10. Each dimension scored 0–10 by LLM against Stripe/Plaid benchmark.
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.83em;">
+        <thead>
+          <tr style="background:#f1f5f9;">
+            <th style="padding:7px 10px;text-align:left;color:#64748b;font-weight:600;">Grade</th>
+            <th style="padding:7px 10px;text-align:left;color:#64748b;font-weight:600;">Score Range</th>
+            <th style="padding:7px 10px;text-align:left;color:#64748b;font-weight:600;">What it means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:7px 10px;font-weight:800;color:#16a34a;">A</td><td style="padding:7px 10px;color:#334155;">90–100</td><td style="padding:7px 10px;color:#334155;">Stripe-tier. Developer can integrate without leaving the page.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;background:#fafafa;"><td style="padding:7px 10px;font-weight:800;color:#22c55e;">A−</td><td style="padding:7px 10px;color:#334155;">85–89</td><td style="padding:7px 10px;color:#334155;">Near-Stripe. One or two minor gaps; still mostly self-serve.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:7px 10px;font-weight:800;color:#65a30d;">B+</td><td style="padding:7px 10px;color:#334155;">80–84</td><td style="padding:7px 10px;color:#334155;">Solid docs. Developer moves fast but hits occasional friction.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;background:#fafafa;"><td style="padding:7px 10px;font-weight:800;color:#ca8a04;">B</td><td style="padding:7px 10px;color:#334155;">75–79</td><td style="padding:7px 10px;color:#334155;">Functional. Some fields, errors, or examples missing.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:7px 10px;font-weight:800;color:#d97706;">B−</td><td style="padding:7px 10px;color:#334155;">70–74</td><td style="padding:7px 10px;color:#334155;">Workable but rough. Developer will need to guess or experiment.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;background:#fafafa;"><td style="padding:7px 10px;font-weight:800;color:#ea580c;">C+</td><td style="padding:7px 10px;color:#334155;">65–69</td><td style="padding:7px 10px;color:#334155;">Below average. Missing key sections; onboarding takes hours.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:7px 10px;font-weight:800;color:#dc2626;">C</td><td style="padding:7px 10px;color:#334155;">60–64</td><td style="padding:7px 10px;color:#334155;">Significant gaps. Support ticket likely before first successful call.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;background:#fafafa;"><td style="padding:7px 10px;font-weight:800;color:#b91c1c;">C−</td><td style="padding:7px 10px;color:#334155;">55–59</td><td style="padding:7px 10px;color:#334155;">Mostly incomplete. Developers will abandon or DM your team.</td></tr>
+          <tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:7px 10px;font-weight:800;color:#7f1d1d;">D</td><td style="padding:7px 10px;color:#334155;">50–54</td><td style="padding:7px 10px;color:#334155;">Effectively undocumented for most dimensions.</td></tr>
+          <tr style="background:#fafafa;"><td style="padding:7px 10px;font-weight:800;color:#450a0a;">F</td><td style="padding:7px 10px;color:#334155;">&lt; 50</td><td style="padding:7px 10px;color:#334155;">No usable documentation. Do not ship.</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:0.8em;color:#64748b;">
+        <b>Dimension weights:</b> Clarity 20% · Completeness 20% · Example Quality 20% · Error Handling 15% · Onboarding Friction 15% · Consistency 10%
+      </div>
+    </div>
+  </details>
+</div>
+"""
 
 def score_color(s: float) -> str:
     if s >= 8: return "#22c55e"
@@ -210,6 +249,8 @@ def render_scorecard_html(source: str, result: dict) -> str:
 
     return f"""
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:820px;">
+
+  {GRADING_RUBRIC_HTML}
 
   <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;align-items:center;gap:24px;">
     <div style="text-align:center;min-width:90px;">
