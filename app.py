@@ -482,9 +482,6 @@ def run_compare(url_a, url_b):
 
 EXAMPLE_URLS = [
     "https://docs.stripe.com/api/charges/create",
-    "https://plaid.com/docs/api/products/transactions/",
-    "https://docs.github.com/en/rest/issues/issues",
-    "https://developers.cloudflare.com/api/operations/zone-create-zone",
 ]
 
 DESCRIPTION = """\
